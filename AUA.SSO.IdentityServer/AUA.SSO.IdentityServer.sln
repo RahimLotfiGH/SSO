@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{3157BFC1-962B-4F88-A8AF-40BFFD2991FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUA.SSO.WebUI", "WebUI\AUA.SSO.WebUI\AUA.SSO.WebUI.csproj", "{B642037D-8A50-479B-9169-DC3B1817AD63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainEntities", "DomainEntities", "{EFC730F8-869F-4192-8774-A08AB8A1557A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUA.SSO.DomainEntities", "DomainEntities\AUA.SSO.DomainEntities\AUA.SSO.DomainEntities.csproj", "{CF739F21-43F7-4B28-A01B-806DD9E6C756}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{A60C2DC3-46CF-4D3E-9BAD-2FBEA6DE23B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUA.SSO.DataLayer", "DataLayer\AUA.SSO.DataLayer\AUA.SSO.DataLayer.csproj", "{CDA32530-CCAA-439B-921D-EE7A705004E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F633A4B2-8193-4A4B-AB1B-F2EC6B347F75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUA.SSO.Services", "Services\AUA.SSO.Services\AUA.SSO.Services.csproj", "{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B642037D-8A50-479B-9169-DC3B1817AD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B642037D-8A50-479B-9169-DC3B1817AD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B642037D-8A50-479B-9169-DC3B1817AD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B642037D-8A50-479B-9169-DC3B1817AD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF739F21-43F7-4B28-A01B-806DD9E6C756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF739F21-43F7-4B28-A01B-806DD9E6C756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF739F21-43F7-4B28-A01B-806DD9E6C756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF739F21-43F7-4B28-A01B-806DD9E6C756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA32530-CCAA-439B-921D-EE7A705004E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA32530-CCAA-439B-921D-EE7A705004E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA32530-CCAA-439B-921D-EE7A705004E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA32530-CCAA-439B-921D-EE7A705004E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B642037D-8A50-479B-9169-DC3B1817AD63} = {3157BFC1-962B-4F88-A8AF-40BFFD2991FA}
+		{CF739F21-43F7-4B28-A01B-806DD9E6C756} = {EFC730F8-869F-4192-8774-A08AB8A1557A}
+		{CDA32530-CCAA-439B-921D-EE7A705004E1} = {A60C2DC3-46CF-4D3E-9BAD-2FBEA6DE23B1}
+		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25} = {F633A4B2-8193-4A4B-AB1B-F2EC6B347F75}
+	EndGlobalSection
+EndGlobal
