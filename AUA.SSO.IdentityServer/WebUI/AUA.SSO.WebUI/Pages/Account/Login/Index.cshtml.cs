@@ -105,7 +105,6 @@ public class Index : PageModel
 
             // validate username/password against in-memory store
             var clinetId = context?.Client.ClientId;
-
             if (string.IsNullOrEmpty(clinetId))
                 clinetId = "1";//sso login  without client or you can set default client 
 

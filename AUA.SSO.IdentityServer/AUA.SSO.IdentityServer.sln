@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{3157BFC1-962B-4F88-A8AF-40BFFD2991FA}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F633A4B2-8193-4A4B-AB1B-F2EC6B347F75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUA.SSO.Services", "Services\AUA.SSO.Services\AUA.SSO.Services.csproj", "{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{406AFACD-68A4-4B45-983C-F4065E023B07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUA.SSO.Models", "Models\AUA.SSO.Models\AUA.SSO.Models.csproj", "{B656A870-D3BC-4F41-94CE-5F6AACB72F4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B656A870-D3BC-4F41-94CE-5F6AACB72F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B656A870-D3BC-4F41-94CE-5F6AACB72F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B656A870-D3BC-4F41-94CE-5F6AACB72F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B656A870-D3BC-4F41-94CE-5F6AACB72F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +58,6 @@ Global
 		{CF739F21-43F7-4B28-A01B-806DD9E6C756} = {EFC730F8-869F-4192-8774-A08AB8A1557A}
 		{CDA32530-CCAA-439B-921D-EE7A705004E1} = {A60C2DC3-46CF-4D3E-9BAD-2FBEA6DE23B1}
 		{5C9C6125-8B5F-40FB-BD5A-214C8CEC8C25} = {F633A4B2-8193-4A4B-AB1B-F2EC6B347F75}
+		{B656A870-D3BC-4F41-94CE-5F6AACB72F4C} = {406AFACD-68A4-4B45-983C-F4065E023B07}
 	EndGlobalSection
 EndGlobal
