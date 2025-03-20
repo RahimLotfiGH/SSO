@@ -1,0 +1,449 @@
+USE [master]
+GO
+/****** Object:  Database [IDPDb]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE DATABASE [IDPDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'IDPDb', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\IDPDb.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'IDPDb_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\IDPDb_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [IDPDb] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [IDPDb].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [IDPDb] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [IDPDb] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [IDPDb] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [IDPDb] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [IDPDb] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [IDPDb] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [IDPDb] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [IDPDb] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [IDPDb] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [IDPDb] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [IDPDb] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [IDPDb] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [IDPDb] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [IDPDb] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [IDPDb] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [IDPDb] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [IDPDb] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [IDPDb] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [IDPDb] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [IDPDb] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [IDPDb] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [IDPDb] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [IDPDb] SET RECOVERY FULL 
+GO
+ALTER DATABASE [IDPDb] SET  MULTI_USER 
+GO
+ALTER DATABASE [IDPDb] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [IDPDb] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [IDPDb] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [IDPDb] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [IDPDb] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [IDPDb] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'IDPDb', N'ON'
+GO
+ALTER DATABASE [IDPDb] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [IDPDb] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [IDPDb]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Client]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Client](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ClientId] [nvarchar](450) NOT NULL,
+	[RequireClientSecret] [bit] NOT NULL,
+ CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClientGrantType]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClientGrantType](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[GrantType] [nvarchar](max) NOT NULL,
+	[ClientId] [int] NOT NULL,
+ CONSTRAINT [PK_ClientGrantType] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClientPostLogoutRedirectUri]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClientPostLogoutRedirectUri](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[PostLogoutRedirectUri] [nvarchar](max) NOT NULL,
+	[ClientId] [int] NOT NULL,
+ CONSTRAINT [PK_ClinetPostLogoutRedirectUri] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClientRedirectUri]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClientRedirectUri](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ClientId] [int] NOT NULL,
+	[RedirectUri] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_ClientRedirectUri] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClientScope]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClientScope](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Scope] [nvarchar](max) NOT NULL,
+	[ClientId] [int] NOT NULL,
+ CONSTRAINT [PK_ClientScope] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ClientSecret]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ClientSecret](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ClientId] [int] NOT NULL,
+	[Type] [nvarchar](max) NOT NULL,
+	[Value] [nvarchar](max) NOT NULL,
+	[Created] [datetime2](7) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[Expiration] [datetime2](7) NULL,
+ CONSTRAINT [PK_ClientSecret] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[User]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Deleted] [bit] NOT NULL,
+	[Email] [nvarchar](200) NULL,
+	[IsActive] [bit] NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+	[Username] [nvarchar](450) NOT NULL,
+	[LastName] [nvarchar](80) NOT NULL,
+	[FirstName] [nvarchar](50) NOT NULL,
+	[PhoneNumber] [nvarchar](max) NOT NULL,
+	[NationalCode] [nvarchar](max) NOT NULL,
+	[CreatedDate] [datetime2](7) NOT NULL,
+	[UpdatedDate] [datetime2](7) NULL,
+	[AccessFailedCount] [int] NOT NULL,
+	[LastLoginDateUtc] [datetime2](7) NULL,
+	[CannotLoginUntilDateUtc] [datetime2](7) NULL,
+ CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserClaim]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserClaim](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[ClaimType] [nvarchar](100) NOT NULL,
+	[ClaimValue] [nvarchar](200) NOT NULL,
+ CONSTRAINT [PK_UserClaim] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserLogin]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserLogin](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[ProviderKey] [nvarchar](200) NOT NULL,
+	[LoginProvider] [nvarchar](100) NOT NULL,
+ CONSTRAINT [PK_UserLogin] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserResetSms]    Script Date: 3/21/2025 1:20:01 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[UserResetSms](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[Message] [nvarchar](250) NOT NULL,
+	[SecurityCode] [nvarchar](5) NOT NULL,
+	[CreatedDate] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_UserResetSms] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250105211542_initDb', N'8.0.11')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250106222532_AddUsers', N'8.0.11')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250109214258_inIt', N'8.0.11')
+GO
+SET IDENTITY_INSERT [dbo].[Client] ON 
+GO
+INSERT [dbo].[Client] ([Id], [ClientId], [RequireClientSecret]) VALUES (2, N'client1', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Client] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ClientGrantType] ON 
+GO
+INSERT [dbo].[ClientGrantType] ([Id], [GrantType], [ClientId]) VALUES (3, N'password', 2)
+GO
+INSERT [dbo].[ClientGrantType] ([Id], [GrantType], [ClientId]) VALUES (1002, N'authorization_code', 2)
+GO
+SET IDENTITY_INSERT [dbo].[ClientGrantType] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ClientPostLogoutRedirectUri] ON 
+GO
+INSERT [dbo].[ClientPostLogoutRedirectUri] ([Id], [PostLogoutRedirectUri], [ClientId]) VALUES (1, N'https://localhost:7048/swagger/oauth2-redirect.html', 2)
+GO
+SET IDENTITY_INSERT [dbo].[ClientPostLogoutRedirectUri] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ClientRedirectUri] ON 
+GO
+INSERT [dbo].[ClientRedirectUri] ([Id], [ClientId], [RedirectUri]) VALUES (2, 2, N'https://localhost:7048/swagger/oauth2-redirect.html')
+GO
+INSERT [dbo].[ClientRedirectUri] ([Id], [ClientId], [RedirectUri]) VALUES (1002, 2, N'https://localhost:7048/swagger/signout-callback-oidc')
+GO
+INSERT [dbo].[ClientRedirectUri] ([Id], [ClientId], [RedirectUri]) VALUES (2002, 2, N'https://localhost:7048/signin-oidc')
+GO
+SET IDENTITY_INSERT [dbo].[ClientRedirectUri] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ClientScope] ON 
+GO
+INSERT [dbo].[ClientScope] ([Id], [Scope], [ClientId]) VALUES (2, N'profile', 2)
+GO
+INSERT [dbo].[ClientScope] ([Id], [Scope], [ClientId]) VALUES (6, N'openid', 2)
+GO
+INSERT [dbo].[ClientScope] ([Id], [Scope], [ClientId]) VALUES (8, N'email', 2)
+GO
+SET IDENTITY_INSERT [dbo].[ClientScope] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ClientSecret] ON 
+GO
+INSERT [dbo].[ClientSecret] ([Id], [ClientId], [Type], [Value], [Created], [Description], [Expiration]) VALUES (4, 2, N'test', N'secret', CAST(N'2025-01-06T10:11:00.0000000' AS DateTime2), N'test', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[ClientSecret] OFF
+GO
+SET IDENTITY_INSERT [dbo].[User] ON 
+GO
+INSERT [dbo].[User] ([Id], [Deleted], [Email], [IsActive], [Password], [Username], [LastName], [FirstName], [PhoneNumber], [NationalCode], [CreatedDate], [UpdatedDate], [AccessFailedCount], [LastLoginDateUtc], [CannotLoginUntilDateUtc]) VALUES (3, 0, N'RahimLotfi@ymail.com', 1, N'$2a$11$bE.7px6Ivjo2Zw4fmkljdODn9qhJ0tPITrIilcW5GD/zO0KlyDqz2', N'test', N'Rahim', N'لطفی', N'09199906342', N'407355100', CAST(N'2025-01-07T10:10:00.0000000' AS DateTime2), CAST(N'2025-01-07T10:10:01.0000000' AS DateTime2), 1, CAST(N'2025-01-07T10:10:00.0000000' AS DateTime2), CAST(N'2025-01-07T10:10:00.0000000' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[User] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_Client_ClientId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Client_ClientId] ON [dbo].[Client]
+(
+	[ClientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ClientGrantType_ClientId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_ClientGrantType_ClientId] ON [dbo].[ClientGrantType]
+(
+	[ClientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ClinetPostLogoutRedirectUri_ClientId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_ClinetPostLogoutRedirectUri_ClientId] ON [dbo].[ClientPostLogoutRedirectUri]
+(
+	[ClientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ClientRedirectUri_ClientId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_ClientRedirectUri_ClientId] ON [dbo].[ClientRedirectUri]
+(
+	[ClientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ClientScope_ClientId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_ClientScope_ClientId] ON [dbo].[ClientScope]
+(
+	[ClientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_ClientSecret_ClientId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_ClientSecret_ClientId] ON [dbo].[ClientSecret]
+(
+	[ClientId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_USERS_USERNAME]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [IX_USERS_USERNAME] ON [dbo].[User]
+(
+	[Username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_UserClaim_UserId_ClaimType]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_UserClaim_UserId_ClaimType] ON [dbo].[UserClaim]
+(
+	[UserId] ASC,
+	[ClaimType] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_UserLogin_UserId_LoginProvider]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [IX_UserLogin_UserId_LoginProvider] ON [dbo].[UserLogin]
+(
+	[UserId] ASC,
+	[LoginProvider] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_UserResetSms_UserId]    Script Date: 3/21/2025 1:20:01 AM ******/
+CREATE NONCLUSTERED INDEX [IX_UserResetSms_UserId] ON [dbo].[UserResetSms]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ClientGrantType]  WITH CHECK ADD  CONSTRAINT [FK_ClientGrantType_Client_ClientId] FOREIGN KEY([ClientId])
+REFERENCES [dbo].[Client] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ClientGrantType] CHECK CONSTRAINT [FK_ClientGrantType_Client_ClientId]
+GO
+ALTER TABLE [dbo].[ClientPostLogoutRedirectUri]  WITH CHECK ADD  CONSTRAINT [FK_ClinetPostLogoutRedirectUri_Client_ClientId] FOREIGN KEY([ClientId])
+REFERENCES [dbo].[Client] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ClientPostLogoutRedirectUri] CHECK CONSTRAINT [FK_ClinetPostLogoutRedirectUri_Client_ClientId]
+GO
+ALTER TABLE [dbo].[ClientRedirectUri]  WITH CHECK ADD  CONSTRAINT [FK_ClientRedirectUri_Client_ClientId] FOREIGN KEY([ClientId])
+REFERENCES [dbo].[Client] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ClientRedirectUri] CHECK CONSTRAINT [FK_ClientRedirectUri_Client_ClientId]
+GO
+ALTER TABLE [dbo].[ClientScope]  WITH CHECK ADD  CONSTRAINT [FK_ClientScope_Client_ClientId] FOREIGN KEY([ClientId])
+REFERENCES [dbo].[Client] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ClientScope] CHECK CONSTRAINT [FK_ClientScope_Client_ClientId]
+GO
+ALTER TABLE [dbo].[ClientSecret]  WITH CHECK ADD  CONSTRAINT [FK_ClientSecret_Client_ClientId] FOREIGN KEY([ClientId])
+REFERENCES [dbo].[Client] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ClientSecret] CHECK CONSTRAINT [FK_ClientSecret_Client_ClientId]
+GO
+ALTER TABLE [dbo].[UserClaim]  WITH CHECK ADD  CONSTRAINT [FK_UserClaim_User_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[UserClaim] CHECK CONSTRAINT [FK_UserClaim_User_UserId]
+GO
+ALTER TABLE [dbo].[UserLogin]  WITH CHECK ADD  CONSTRAINT [FK_UserLogin_User_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[UserLogin] CHECK CONSTRAINT [FK_UserLogin_User_UserId]
+GO
+ALTER TABLE [dbo].[UserResetSms]  WITH CHECK ADD  CONSTRAINT [FK_UserResetSms_User_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([Id])
+GO
+ALTER TABLE [dbo].[UserResetSms] CHECK CONSTRAINT [FK_UserResetSms_User_UserId]
+GO
+USE [master]
+GO
+ALTER DATABASE [IDPDb] SET  READ_WRITE 
+GO
